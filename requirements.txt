@@ -1,0 +1,17 @@
+config==0.5.1
+decorator==5.1.1
+Django==4.2.3
+django-debug-toolbar==4.1.0
+django-extensions==3.2.3
+django-filter==23.2
+django-rest-framework==0.1.0
+djangorestframework==3.14.0
+drf-spectacular==0.26.3
+google-search-results==2.4.2
+openai==0.27.8
+langchain==0.0.256
+prompt-toolkit==3.0.39
+websocket-client==1.6.1
+jieba==0.42.1
+tiktoken==0.4.0
+faiss-cpu==1.7.4
