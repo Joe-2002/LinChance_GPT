@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'langchain',
     'openai',
-    'apps.LangChain'
+    'apps.LinChance_GPT_a'
 ]
 
 MIDDLEWARE = [

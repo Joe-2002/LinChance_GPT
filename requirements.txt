@@ -15,3 +15,5 @@ websocket-client==1.6.1
 jieba==0.42.1
 tiktoken==0.4.0
 faiss-cpu==1.7.4
+sentence_transformers==2.0.0
+bs4==0.0.1
