@@ -2,7 +2,7 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 from langchain.document_loaders import *
-
+# from apps.LinChance_GPT_a.views import text_input
 from sentence_transformers import SentenceTransformer
 model_name = "bert-base-chinese"
 model = SentenceTransformer(model_name)
@@ -12,6 +12,7 @@ class LinFaiss:
         self.embeddings = HuggingFaceEmbeddings(model_name="bert-base-chinese")
 
     def load_data(self):
+        # loader=user_input
         loader = WebBaseLoader([
            "https://milvus.io/docs/overview.md",
         ])
@@ -21,12 +22,27 @@ class LinFaiss:
         docs = text_splitter.split_documents(data)
         print(docs)
         return docs
+    
+    # def load_text(self,request):
+    #     files=text_input # =['研发简要流程.txt',]
+    #     # documents=[]
+    #     for file in files:
+    #         #读取data文件夹中的中文文档
+    #         my_file=f"./text/{file}"
+    #         loader = TextLoader(my_file, encoding='utf8')
+    #         # documents1 = loader.load()
+    #         # documents.append(documents1[0])
 
+    #         data = loader.load()
+    #         text_splitter = CharacterTextSplitter(chunk_size=1024, chunk_overlap=0)
+    #         docs = text_splitter.split_documents(data)
+    #         print(docs)
+    #         return docs
+        
     def get_embeddings(self, docs):
 
         vector_store = FAISS.from_documents(
-            docs,
-            embedding=self.embeddings
+            docs,embedding=self.embeddings
         )
         return vector_store
 
@@ -38,12 +54,12 @@ class LinFaiss:
         ]
         return documents_dict
 
-    def save_vec_data(self, index="LinChance_GPT/apps/faiss_index"):
+    def save_vec_data(self, index="LinChance_GPT_a/Lin_FAISS/faiss_index"):
         docs = self.load_data()
         vector_store = self.get_embeddings(docs)
         vector_store.save_local(index)
 
-    def get_similarity_documents(self, q, index="LinChance_GPT/apps/faiss_index", limit=3):
+    def get_similarity_documents(self, q, index="LinChance_GPT_a/Lin_FAISS/faiss_index", limit=3):
         db = FAISS.load_local(index, self.embeddings)
         docs = db.similarity_search(q, k=limit)
         texts = self.documents2dict(docs)

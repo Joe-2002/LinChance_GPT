@@ -4,20 +4,23 @@ from django.http import JsonResponse
 from .models import *
 from .serializers import GptSerializer
 from rest_framework.viewsets import ModelViewSet
-from apps.LinChance_GPT_a.gpt import get_completion
+from apps.LinChance_GPT_a.GPT_API.gpt import get_completion
 from langchain.llms import OpenAI
 from langchain.agents import load_tools
 from langchain.agents import initialize_agent
 import os
 from datetime import datetime
 from rest_framework import status
-from apps.LinChance_GPT_a.spark import *
-from apps.LinChance_GPT_a.MyFaiss import *
+from apps.LinChance_GPT_a.GPT_API.spark import *
+from apps.LinChance_GPT_a.Lin_FAISS.MyFaiss import *
+from apps.LinChance_GPT_a.Prompts.lin_prompt import *
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.document_loaders import *
 # Create your views here.
 
 
 
-os.environ['OPENAI_API_KEY'] = openai_api_key = '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' 
+os.environ['OPENAI_API_KEY'] = openai_api_key = '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' 
 os.environ["SERPAPI_API_KEY"] = "d6608634b82b7ab0c1256d361e541067da80454526b33481775724916e8e5fea"
 
 ### GPT3.5
@@ -61,13 +64,19 @@ class ChatMessageViewSet(ModelViewSet):
             # 获取最新的历史纪录
             chat_history = ChatHistory.objects.latest('timestamp')
 
+    # user_input = request.GET.get("user_input", "")
+    # start_new_conversation = request.GET.get("start_new_conversation", "") == "true"
+
         # 构建对话提示
         prompt = f"Start the conversation:User: {user_input}Chat history:"
         for message in chat_history.messages.all():
             prompt += f"User: {message.user_input}GPT: {message.gpt_response}"
-        
-        # 获取AI回复
-        gpt_response, history = SparkLLM(question=user_input, history=[] if start_new_conversation else chat_history.messages.all())
+
+        chat_history = ChatHistory.objects.create() if start_new_conversation else ChatHistory.objects.last()
+
+        gpt_response, history = SparkLLM(question=user_input, history=list(chat_history.messages.all()))  
+        # # 获取AI回复
+        # gpt_response, history = SparkLLM(question=user_input, history=[] if start_new_conversation else chat_history.messages.all())
 
         # 创建并保存这些会话
         chat_message = ChatMessage.objects.create(chat_history=chat_history, user_input=user_input, gpt_response=gpt_response)
@@ -101,7 +110,7 @@ class ChatMessageViewSet(ModelViewSet):
  
         query = user_input
         linfaiss = LinFaiss()
-        linfaiss.save_vec_data()
+        # linfaiss.save_vec_data()
         similar_doc = linfaiss.get_similarity_documents(query)
         # print(similar_doc)
         return JsonResponse({'response': similar_doc})
@@ -113,7 +122,11 @@ class ChatMessageViewSet(ModelViewSet):
 #     similar_doc = linfaiss.get_similarity_documents(query)
 
 
-
+    # @action(detail=False, methods=['post'])
+    # def load_text(self,request):
+    #     data = request.data
+    #     text_input = data.get('user_input', '')
+    #     print(text_input)
 
 
 
