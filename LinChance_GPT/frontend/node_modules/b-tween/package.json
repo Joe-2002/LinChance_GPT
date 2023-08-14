@@ -1,0 +1,38 @@
+{
+  "name": "b-tween",
+  "version": "0.3.3",
+  "description": "A simple but powerful tweening engine for Javascript.",
+  "main": "./dist/b-tween.cjs.js",
+  "module": "./dist/b-tween.es.js",
+  "scripts": {
+    "dev-cjs": "rollup -c -f cjs -o ./dist/b-tween.cjs.js -w",
+    "dev-es": "rollup -c -w",
+    "dev-umd": "rollup -c -f umd -o ./dist/b-tween.umd.js -n BTween -w",
+    "build": "rm -rf dist/* && rollup -c -o ./dist/b-tween.es.js && rollup -c -f cjs -o ./dist/b-tween.cjs.js && rollup -c -f umd -n BTween -o ./dist/b-tween.umd.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PengJiyuan/b-tween.git"
+  },
+  "keywords": [
+    "tween",
+    "animation",
+    "javascript",
+    "motion",
+    "transform"
+  ],
+  "author": "PengJiyuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PengJiyuan/b-tween/issues"
+  },
+  "homepage": "https://github.com/PengJiyuan/b-tween#readme",
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "rollup": "^1.9.0",
+    "rollup-plugin-buble": "^0.19.6"
+  },
+  "pre-commit": [
+    "build"
+  ]
+}

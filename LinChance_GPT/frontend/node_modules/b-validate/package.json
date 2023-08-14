@@ -1,0 +1,47 @@
+{
+  "name": "b-validate",
+  "version": "1.5.3",
+  "description": "Javascript type validate",
+  "main": "./dist/b-validate.cjs.js",
+  "module": "./es/index.js",
+  "types": "./es",
+  "scripts": {
+    "prepublishOnly": "npm run test && npm run build ",
+    "dev-cjs": "rollup -c -f cjs -o ./dist/b-validate.cjs.js -w",
+    "dev-es": "rollup -c -w",
+    "build:es": "rm -rf es/* && BUILD_TYPE=es rollup -c",
+    "build:dist": "rm -rf dist/*  && BUILD_TYPE=dist rollup -c ",
+    "build": "npm run build:es && npm run build:dist ",
+    "test": "npm run build:es && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PengJiyuan/b-validate.git"
+  },
+  "keywords": [
+    "validate",
+    "type"
+  ],
+  "author": "PengJiyuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PengJiyuan/b-validate/issues"
+  },
+  "homepage": "https://github.com/PengJiyuan/b-validate#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0",
+    "rollup": "^3.23.0",
+    "@rollup/plugin-buble": "*",
+    "@rollup/plugin-commonjs": "*",
+    "@rollup/plugin-node-resolve": "*",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.3"
+  },
+  "files": [
+    "dist",
+    "es"
+  ]
+}

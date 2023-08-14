@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
-from apps.LinChance_GPT_a.views import *
+from apps.GPT_app.views import *
 
 router = routers.DefaultRouter()
 router.register('LinChanceGPT',ChatMessageViewSet)
