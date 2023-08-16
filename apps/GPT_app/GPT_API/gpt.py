@@ -7,6 +7,8 @@ openai_api_key = ''
 openai.api_key = openai_api_key
 
         
+
+        
 def get_completion(prompt, model="gpt-3.5-turbo"):
         """
         使用 OpenAI 的模型生成聊天回复。
