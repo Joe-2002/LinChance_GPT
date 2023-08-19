@@ -16,6 +16,12 @@ const routes: RouteRecordRaw[] = [
     name: 'shuju',
     component: () => import(/* webpackChunkName: "about" */ '../components/shuju.vue')
   },
+  {
+    path: '/spark',
+    name: 'spark',
+    component: () => import(/* webpackChunkName: "about" */ '../components/spark.vue')
+  },
+  
   
 ]
 
