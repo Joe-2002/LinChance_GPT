@@ -8,7 +8,7 @@
 随着项目的不断优化，计划将其扩展到个人领域，构建个人知识体系，从而不断为企业和个人创造价值。
 
 ## 技术点
-- GPT（ChatGPT、星火API等）
+- GPT（GPT3.5、星火API等）
 - Django4.2
 - Vue3
 - LangChain
