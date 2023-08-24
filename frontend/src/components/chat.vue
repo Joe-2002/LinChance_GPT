@@ -55,8 +55,20 @@
 
 
          <div class="content">
-            <div v-for="message in messages" :key="message.id" :class="{ 'message': true, 'zoomed': isZoomed }">
-               <icon-robot size="30" /> <span> : {{ message.content }}</span>
+
+            <!-- <div v-for="message in messages" :key="message.id" :class="{ 'message': true, 'zoomed': isZoomed }">
+               <icon-robot size="30" /> <p style="width: 100%; word-wrap: break-word; margin-left: 20px; padding-right: 20px;">{{ message.content }}</p> 
+            </div> -->
+
+            <div class="message-item" v-for="message in messages" :key="message.id">
+               <div class="message-group" >
+                  <div class="message-icon">
+                  <icon-robot size="40" />
+               </div>
+               <div class="message-content">
+                  <p style="word-wrap: break-word;">{{ message.content }}</p>
+               </div>                 
+               </div>
             </div>
 
          </div>
@@ -85,6 +97,9 @@ import { defineComponent, ref } from 'vue';
 import { IconSend, IconDelete } from '@arco-design/web-vue/es/icon';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+
+//导入接口
+import { getHistoryAPI } from '@/apis/chatApi.js'
 
 
 export default defineComponent({
@@ -229,8 +244,11 @@ export default defineComponent({
       // };
 
       const getHistory = async () => {
-         const res = await axios.get('http://127.0.0.1:8000/LinChanceGPT/chat_history');
-         history.value = res.data;
+         // const res = await axios.get('http://127.0.0.1:8000/LinChanceGPT/chat_history');
+         // history.value = res.data;
+         const res = await getHistoryAPI()
+         console.log(res)
+
       };
 
       const createMessage = async () => {
@@ -293,7 +311,7 @@ export default defineComponent({
 .sider {
    background-color: rgba(24, 27, 28);
    width: 20%;
-   height: 100vh;
+   height: 100%;
    position: relative;
 }
 
@@ -304,7 +322,6 @@ export default defineComponent({
    height:30px;
    display: flex;
    align-items: center;
-   padding: 10px;
 
 }
 
@@ -356,10 +373,17 @@ justify-content: right;
 align-items: center;
 } */
 .message {
+   background-color: #aa2e2e;
    display: flex;
    align-items: center;
    margin-bottom: 10px;
    color:#fff;
+   padding: 20px;
+   border-radius: 10px;
+   width: 50%;
+   margin: auto;
+   margin-top: 30px;
+   height: auto;
  }
 
  .Initial{
@@ -383,11 +407,42 @@ align-items: center;
 .content {
    background-color: #0a0a0a;
    flex-grow: 1;
-    width: 100%;
+   width: 100%;
    height: 75%;
    overflow-y: auto;
-   padding: 10px;
 }
+
+.message-item {
+   background-color: #555555;
+   padding: 20px;
+   margin-top: 2px;
+}
+
+.message-group {
+   width: 50%;
+   margin: auto;
+   display: flex;
+   flex-direction: row; 
+}
+
+.message-icon {
+   width: 10%;
+   text-align: center;
+   line-height: 60px;
+   justify-items: center;
+   display: flex;
+   color: #fff;
+}
+
+.message-content {
+   width: 80%;
+   line-height: 28px;
+   color: #fff;
+   padding-left: 10px;
+   font-size: 18px;
+}
+
+
 
 
 
@@ -433,7 +488,6 @@ align-items: center;
    flex: 1;
    width: 100%;
    height: 80px;
-   padding-left:2%;
    display: flex;
 
 }
