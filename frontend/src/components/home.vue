@@ -6,7 +6,7 @@
           
         </div>
         <div class="banner">
-          <div class="banner-title">LinCHanceGPT</div>
+          <div class="banner-title">LinChance GPT</div>
           <div class="ing"></div>
           <div class="banner-desc">专注于提供全面知识管理和培训解决方案的领先企业。通过整合行业顶尖的资源和最佳实践，我们致力于帮助企业实现持续创新、高效决策和团队协作的目标</div>
         </div>
@@ -52,6 +52,7 @@
   .banner-title {
     font-family: 'KoHo';
     font-style: normal;
+    text-align: center;
     font-weight: 600;
     font-size: 88px;
     line-height: 155.52%;
@@ -66,6 +67,7 @@
     font-weight: 400;
     font-size: 20px;
     line-height: 48px;
+    text-align: center;
 /* identical to box height, or 157% */
     display: flex;
     align-items: center;
@@ -78,8 +80,9 @@
   }
 
   .btn{
-    padding-top:2%;
-    padding-left:30%;
-    width:100px;
+    width:100%;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
   }
   </style>
