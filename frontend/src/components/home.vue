@@ -8,7 +8,9 @@
         <div class="banner">
           <div class="banner-title">LinChance GPT</div>
           <div class="ing"></div>
-          <div class="banner-desc">专注于提供全面知识管理和培训解决方案的领先企业。通过整合行业顶尖的资源和最佳实践，我们致力于帮助企业实现持续创新、高效决策和团队协作的目标</div>
+          <div class="banner-desc">
+            <p>专注于提供全面知识管理和培训解决方案的领先企业。通过整合行业顶尖的资源和最佳实践，我们致力于帮助企业实现持续创新、高效决策和团队协作的目标</p>
+          </div>
         </div>
         
       </div>
@@ -57,23 +59,24 @@
     font-size: 88px;
     line-height: 155.52%;
     color:#fff;
-    padding-top:95px;
-    padding-left:328px;
-    padding-right:20%;
+
   }
   .banner-desc {
     font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 48px;
     text-align: center;
-/* identical to box height, or 157% */
     display: flex;
     align-items: center;
     color:#fff;
-    padding-left:328px;
-    padding-right:20%;
+    margin: auto;
+    width: 50%;
+
+    /* p {
+      width: 50%;
+      margin: auto;
+    } */
   }
   .banner-tag {
     border: 1px solid #fff;
