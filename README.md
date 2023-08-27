@@ -8,7 +8,7 @@
 随着项目的不断优化，计划将其扩展到个人领域，构建个人知识体系，从而不断为企业和个人创造价值。
 
 ## 技术点
-- GPT（GPT3.5、星火API等）
+- GPT（ChatGPT、星火API等）
 - Django4.2
 - Vue3
 - LangChain
@@ -72,7 +72,11 @@
   - 后端使用Langchian 搭配 GPT 模型对用户提问进行理解和生成智能回复。
 
 ## 原型设计
+- 首页
+  ​![image](../asset/JeLnBMOOaX.jpg)​
+- GPT问答页面  
 
+  ​![image](../asset/w7oIgBq0SN.jpg)​
 ## 项目规划
 ### 前期（立项至原型设计完成）
 
@@ -113,22 +117,23 @@
   - 根据测试反馈挖掘功能优化点。
 
 **2. 功能迭代与优化**
-  - 根据内测反馈，不断优化产品功能。
-
+  - 根据内测反馈，不断优化产品功能。  
+  
 ## 奖项荣誉
 
 **1. Datawhale《AI夏令营（第二期）》一等奖**
-<br><img src="https://github.com/zheyuX/LinChanceGPT_awards/blob/main/%E5%A5%96%E9%A1%B9%E8%8D%A3%E8%AA%89/%E4%B8%80%E7%AD%89%E5%A5%96.png" width="600"/><br/>
+<br><img src="../asset/awardsNO.1.png" width="600"/><br/>
 
 **2. Datawhale开源学习卓越作品奖**
-<br><img src="https://github.com/zheyuX/LinChanceGPT_awards/blob/main/%E5%A5%96%E9%A1%B9%E8%8D%A3%E8%AA%89/%E5%8D%93%E8%B6%8A%E4%BD%9C%E5%93%81%E5%A5%96.png" width="600"/><br/>
+<br><img src="../asset/awards_Distinguished.png" width="600"/><br/>
 
 **3. Datawhale开源学习最佳创新奖**
-<br><img src="https://github.com/zheyuX/LinChanceGPT_awards/blob/main/%E5%A5%96%E9%A1%B9%E8%8D%A3%E8%AA%89/%E6%9C%80%E4%BD%B3%E5%88%9B%E6%96%B0%E5%A5%96.png" width="600"/><br/>
+<br><img src="../asset/awards_Bestinnovation.png" width="600"/><br/>  
+
 
 ## 贡献者
 
-项目负责人：[李柯辰](​https://github.com/Joe-2002)
+项目负责人：[李柯辰](https://github.com/Joe-2002)
 
 邮箱：likechen@linchance.com
 
