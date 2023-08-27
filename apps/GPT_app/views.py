@@ -1,135 +1,205 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from django.http import JsonResponse
+# from django.http import JsonResponse
 from .models import *
-from .serializers import GptSerializer
+from .serializers import *
 from rest_framework.viewsets import ModelViewSet
-from apps.GPT_app.GPT_API.gpt import get_completion
+from apps.GPT_API.gpt import get_completion
 from langchain.llms import OpenAI
 from langchain.agents import load_tools
 from langchain.agents import initialize_agent
 import os
 from datetime import datetime
 from rest_framework import status
-from apps.GPT_app.GPT_API.spark import *
-from apps.GPT_app.Lin_FAISS.MyFaiss import *
-from apps.GPT_app.Prompts.lin_prompt import *
+from apps.GPT_API.spark import SparkLLM
+from apps.Lin_FAISS.MyFaiss import *
+from apps.Prompts.lin_prompt import *
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.document_loaders import *
+from apps.GPT_API.configs import openai_api_key,serpapi_api_key
+from apps.Prompts.lin_prompt import *
+from langchain import PromptTemplate
 # Create your views here.
 
 
 
-os.environ['OPENAI_API_KEY'] = openai_api_key = '' 
-os.environ["SERPAPI_API_KEY"] = "d6608634b82b7ab0c1256d361e541067da80454526b33481775724916e8e5fea"
+os.environ['OPENAI_API_KEY'] = openai_api_key  
+os.environ["SERPAPI_API_KEY"] = serpapi_api_key
 
 ### GPT3.5
-class ChatMessageViewSet(ModelViewSet):
-    queryset = ChatMessage.objects.all()
-    serializer_class = GptSerializer
 
+class ChatHistoryViewSet(ModelViewSet):
+    queryset = ChatHistory.objects.all()
+    serializer_class = ChatHistorySerializer
+
+## GPT3.5
     @action(detail=False, methods=['post'])
     def chat_with_gpt(self, request):
-        data = request.data
-        user_input = data.get('user_input', '')
-
-        # 创建新的历史纪录
-        chat_history = ChatHistory.objects.create()
-
-        # 构建对话提示
-        prompt = f"Start the conversation:User: {user_input}Chat history:"
-        for message in chat_history.messages.all():
-            prompt += f"User: {message.user_input}GPT: {message.gpt_response}"
+        data = request.data['postdata']
+        print("这是前端传过来的数据",data)
+        user_input = data.get('user_input')  # 获取用户输入
+        chat_name = data.get('chat_name')  # 获取对话名称
+        new_chat = data.get('new_chat')  # 是否新建对话，假设 'new_chat' 是布尔字段
+        # print (new_chat)
         
-        # 获取AI回复
-        gpt_response = get_completion(prompt)
+        if new_chat == 'True':
+            # 如果新建对话，创建 ChatHistory 记录，并初始化一个空的历史记录列表
+            time = datetime.now()
+            time = str(time)
+            # print(time)
+            chat_history = ChatHistory.objects.create(timestamp=time, chat_name=chat_name)
 
-        print (gpt_response)
-        # 创建并保存这些会话
+        elif new_chat == 'False':
+            # 如果不是新建对话，查找最近的 ChatHistory 记录，并构建历史记录列表
+            print('*********************')
+            chat_history = ChatHistory.objects.latest('timestamp')
+            print(chat_history)
+
+
+        prompt = f"Start the conversation:\n"
+        for message in chat_history.messages.all():
+            if message.user_input:
+                prompt += f"User: {message.user_input}\n"
+            if message.gpt_response:
+                prompt += f"GPT: {message.gpt_response}\n"
+        prompt += f"User: {user_input}\n"
+
+
+        # 调用 GPT-3.5获取 AI 回复
+        gpt_response = get_completion(prompt)
+        print(gpt_response)
+        print('------------------------------------------------------')
+
+        # 创建新的 ChatMessage 记录并关联到 ChatHistory，保存
         chat_message = ChatMessage.objects.create(chat_history=chat_history, user_input=user_input, gpt_response=gpt_response)
-        print(chat_message)
-        return Response({'response': gpt_response}, status=status.HTTP_201_CREATED)
+        chat_history.messages.add(chat_message)
+
+        # 返回 AI 回复
+        return Response({'gpt': gpt_response})
 
 ### Spark
+
     @action(detail=False, methods=['post'])
     def chat_with_Spark(self, request):
-        data = request.data
-        user_input = data.get('user_input', '')
-        start_new_conversation = data.get('start_new_conversation', False)  # 新开始一轮对话的参数
+        data = request.data['postdata']
+        print("这是前端传过来的数据",data)
+        user_input = data.get('user_input')  # 获取用户输入
+        chat_name = data.get('chat_name')  # 获取对话名称
+        new_chat = data.get('new_chat')  # 是否新建对话，假设 'new_chat' 是布尔字段
+        # print (new_chat)
+        print(user_input,chat_name,new_chat)
 
-        if start_new_conversation:
-            # 创建新的历史纪录
-            chat_history = ChatHistory.objects.create()
-        else:
-            # 获取最新的历史纪录
+        if new_chat == "True":
+            # 如果新建对话，创建 ChatHistory 记录，并初始化一个空的历史记录列表
+            time = datetime.now()
+            time = str(time)
+            # print(time)
+            chat_history = ChatHistory.objects.create(timestamp=time, chat_name=chat_name)
+            history = []
+        if new_chat == "False":
+            # 如果不是新建对话，查找最近的 ChatHistory 记录，并构建历史记录列表
+            print('*********************')
             chat_history = ChatHistory.objects.latest('timestamp')
+            print(chat_history)
+            history = []
 
-    # user_input = request.GET.get("user_input", "")
-    # start_new_conversation = request.GET.get("start_new_conversation", "") == "true"
-
-        # 构建对话提示
-        prompt = f"Start the conversation:User: {user_input}Chat history:"
+        prompt = f"Start the conversation:\n"
         for message in chat_history.messages.all():
-            prompt += f"User: {message.user_input}GPT: {message.gpt_response}"
+            if message.user_input:
+                prompt += f"User: {message.user_input}\n"
+            if message.gpt_response:
+                prompt += f"Spark: {message.gpt_response}\n"
+        prompt += f"User: {user_input}\n"
 
-        chat_history = ChatHistory.objects.create() if start_new_conversation else ChatHistory.objects.last()
 
-        gpt_response, history = SparkLLM(question=user_input, history=list(chat_history.messages.all()))  
-        # # 获取AI回复
-        # gpt_response, history = SparkLLM(question=user_input, history=[] if start_new_conversation else chat_history.messages.all())
+        # 调用 SparkLLM 函数获取 AI 回复
+        gpt_response, updated_history = SparkLLM(prompt, history)
+        print(gpt_response)
+        print('------------------------------------------------------')
 
-        # 创建并保存这些会话
+        # 创建新的 ChatMessage 记录并关联到 ChatHistory，保存
         chat_message = ChatMessage.objects.create(chat_history=chat_history, user_input=user_input, gpt_response=gpt_response)
-        print (chat_message)
-        return JsonResponse({'response': gpt_response})
+        chat_history.messages.add(chat_message)
+
+        # 返回 AI 回复
+        return Response({ gpt_response})
 
 ### Chat History
+
+
     @action(detail=False, methods=['get', 'post'])
     def chat_history(self, request):
-        start_timestamp = request.data.get('start_timestamp')
-        end_timestamp = request.data.get('end_timestamp')
+        if request.method == 'GET':
+            all_timestamps = ChatHistory.objects.values_list('timestamp', flat=True)
+            # all_chat_name = ChatHistory.objects.values_list('chat_name',flat=True)
+            return Response(all_timestamps)
+
         
-        if start_timestamp and end_timestamp:
-            chat_histories = ChatHistory.objects.filter(timestamp__range=[start_timestamp, end_timestamp]).order_by('timestamp')
-        else:
-            chat_histories = ChatHistory.objects.order_by('timestamp')
-        
-        history_data = []
-        for chat_history in chat_histories:
-            messages = [{'timestamp': message.timestamp, 'user_input': message.user_input, 'gpt_response': message.gpt_response} for message in chat_history.messages.all()]
-            history_data.append({'timestamp': chat_history.timestamp, 'messages': messages})
-        
-        return Response({'chat_history': history_data})
-    
+        if request.method == 'POST':
+            selected_timestamp = request.data.get('timestamp')
+            chat_name = request.data.get('chat_name')
+
+            # 获取匹配的 ChatHistory 记录
+            chat_history = ChatHistory.objects.filter(timestamp=selected_timestamp).first()
+
+            if chat_history:
+                # 如果传入了 chat_name，则更新 chat_history 的 chat_name
+                if chat_name is not None:
+                    chat_history.chat_name = chat_name
+                    chat_history.save()
+
+                serializer = ChatHistorySerializer(chat_history)
+                return Response(serializer.data)
+            else:
+                return Response({"message": "No chat history found for the selected date."}
+                                )
+
 
 ### Faiss
+
+
     @action(detail=False, methods=['post'])
-    def Chat_with_Faiss(self, request):
-        data = request.data
-        user_input = data.get('user_input', '')
- 
+    def chat_with_Faiss(self, request):
+
+        data = request.data['postdata']
+        print(data)
+        user_input = data.get('user_input')  # 获取用户输入
+        print('-----------------------------------')
+        print('user_input:',user_input)
+        chat_name = data.get('chat_name')  # 获取对话名称
+        print('-----------------------------------')
+        print('chat_name:',chat_name)
+        new_chat = data.get('new_chat')  # 是否新建对话，假设 'new_chat' 是布尔字段
+        print('-----------------------------------')
+        print('new_chat:',new_chat)
         query = user_input
+        if new_chat == "True":
+            # 如果新建对话，创建 ChatHistory 记录，并初始化一个空的历史记录列表
+            time = datetime.now()
+            time = str(time)
+            chat_history = ChatHistory.objects.create(timestamp=time, chat_name=chat_name)
+            history = []
+        elif new_chat == "False":
+            # 如果不是新建对话，查找最近的 ChatHistory 记录，并构建历史记录列表
+            chat_history = ChatHistory.objects.latest('timestamp')
+            history = []
         linfaiss = LinFaiss()
+        # 获取相似内容
+        similar_doc = []
+        print('------------------------------------------------------')
+        similar_doc_all = linfaiss.get_similarity_documents(query, limit=1)
+        for data in similar_doc_all:
+            similar_doc.append(data['page_content'])
+        content, history = SparkLLM(question=query, history=history, similar_doc=similar_doc)
+
+        chat_message = ChatMessage.objects.create(chat_history=chat_history, user_input=user_input, gpt_response=content)
+        chat_history.messages.add(chat_message)
         # linfaiss.save_vec_data()
-        similar_doc = linfaiss.get_similarity_documents(query)
-        # print(similar_doc)
-        return JsonResponse({'response': similar_doc})
-
-# if __name__ == "__main__":
-#     linfaiss = LinFaiss()
-#     # linfaiss.save_vec_data()
-#     query = "How to use milvus?"
-#     similar_doc = linfaiss.get_similarity_documents(query)
-
-
-    # @action(detail=False, methods=['post'])
-    # def load_text(self,request):
-    #     data = request.data
-    #     text_input = data.get('user_input', '')
-    #     print(text_input)
-
-
-
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+        print('chat with Faiss')
+        print(content)
+        print('***********************************************************************')
+        return Response({content})
 
 
 

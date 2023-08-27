@@ -1,0 +1,13 @@
+[0;1;31m●[0m nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: [0;1;31mfailed[0m (Result: exit-code) since Thu 2023-08-17 23:05:04 CST; 19h ago
+       Docs: man:nginx(8)
+    Process: 816 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; [0;1;31m(code=exited, status=1/FAILURE)[0m
+
+Aug 17 23:05:04 VM-4-6-ubuntu systemd[1]: Starting A high performance web server and a reverse proxy server...
+Aug 17 23:05:04 VM-4-6-ubuntu nginx[816]: nginx: [emerg] invalid number of arguments in "proxy_set_header" directive in /etc/nginx/nginx.conf:74
+Aug 17 23:05:04 VM-4-6-ubuntu nginx[816]: nginx: configuration file /etc/nginx/nginx.conf test failed
+Aug 17 23:05:04 VM-4-6-ubuntu systemd[1]: [0;1;39m[0;1;31m[0;1;39mnginx.service: Control process exited, code=exited, status=1/FAILURE[0m
+Aug 17 23:05:04 VM-4-6-ubuntu systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mnginx.service: Failed with result 'exit-code'.[0m
+Aug 17 23:05:04 VM-4-6-ubuntu systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start A high performance web server and a reverse proxy server.[0m
+Aug 18 00:08:12 VM-4-6-ubuntu systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mnginx.service: Unit cannot be reloaded because it is inactive.[0m

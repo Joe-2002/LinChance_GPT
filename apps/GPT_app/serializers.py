@@ -1,7 +1,14 @@
-from apps.GPT_app.models import *   
 from rest_framework.serializers import *
+from .models import ChatHistory, ChatMessage
 
-class GptSerializer(Serializer):
+class ChatMessageSerializer(ModelSerializer):
     class Meta:
-        model = ChatHistory,ChatMessage
+        model = ChatMessage
+        fields = '__all__'
+
+class ChatHistorySerializer(ModelSerializer):
+    messages = ChatMessageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = ChatHistory
         fields = '__all__'
