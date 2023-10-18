@@ -130,6 +130,9 @@
 **3. Datawhale开源学习最佳创新奖**
 <br><img src="../asset/awards_Bestinnovation.png" width="600"/><br/>  
 
+**4. 2023百度搜索创新大赛 赛道三-AI应用设计 Top5**
+<br><img src="../asset/Baidu_AI.jpg" width="600"/><br/>  
+
 
 ## 贡献者
 
