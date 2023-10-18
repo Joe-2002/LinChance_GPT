@@ -73,10 +73,10 @@
 
 ## 原型设计
 - 首页
-  ​![image](../asset/JeLnBMOOaX.jpg)​
+  ​![image](./asset/JeLnBMOOaX.jpg)​
 - GPT问答页面  
 
-  ​![image](../asset/w7oIgBq0SN.jpg)​
+  ​![image](./asset/w7oIgBq0SN.jpg)​
 ## 项目规划
 ### 前期（立项至原型设计完成）
 
@@ -122,16 +122,16 @@
 ## 奖项荣誉
 
 **1. Datawhale《AI夏令营（第二期）》一等奖**
-<br><img src="../asset/awardsNO.1.png" width="600"/><br/>
+<br><img src="./asset/awardsNO.1.png" width="600"/><br/>
 
 **2. Datawhale开源学习卓越作品奖**
-<br><img src="../asset/awards_Distinguished.png" width="600"/><br/>
+<br><img src="./asset/awards_Distinguished.png" width="600"/><br/>
 
 **3. Datawhale开源学习最佳创新奖**
-<br><img src="../asset/awards_Bestinnovation.png" width="600"/><br/>  
+<br><img src="./asset/awards_Bestinnovation.png" width="600"/><br/>  
 
 **4. 2023百度搜索创新大赛 赛道三-AI应用设计 Top5**
-<br><img src="../asset/Baidu_AI.jpg" width="600"/><br/>  
+<br><img src="./asset/Baidu_AI.jpg" width="600"/><br/>  
 
 
 ## 贡献者
