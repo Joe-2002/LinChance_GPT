@@ -206,3 +206,7 @@
 </div>
 
 特别感谢为本项目做出贡献的同学们！
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Joe-2002/LinChance_GPT&type=Date)](https://star-history.com/#Joe-2002/LinChance_GPT&Date)
