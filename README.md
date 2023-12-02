@@ -164,17 +164,17 @@
          <a href="https://github.com/zhaojaiyi">赵嘉仪</a>
          <p>南通师范高等专科学校<br>江苏霖承科技有限公司</p>
       </td>
-      <td>
-         <a href="https://github.com/zhangyi999-g"><img width="70" height="70" src="https://github.com/zhangyi999-g.png?s=40" alt="pic"></a><br>
-         <a href="https://github.com/zhangyi999-g">张艺琼</a>
-         <p>北京大学</p>
-      </td>
     </tr>
   </tbody>
 </table>
 <table border="0">
   <tbody>
     <tr align="center" >
+      <td width="190">
+         <a href="https://github.com/zhangyi999-g"><img width="70" height="70" src="https://github.com/zhangyi999-g.png?s=40" alt="pic"></a><br>
+         <a href="https://github.com/zhangyi999-g">张艺琼</a>
+         <p>北京大学</p>
+      </td>
       <td width="190">
          <a href="https://github.com/zzc-ccccc"><img width="70" height="70" src="https://github.com/zzc-ccccc.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zzc-ccccc">曾紫翀</a>
