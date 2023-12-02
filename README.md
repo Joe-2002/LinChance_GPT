@@ -144,27 +144,27 @@
 <table border="0">
   <tbody>
     <tr align="center">
-     <td width="190">
+     <td>
          <a href="https://github.com/Joe-2002"><img width="70" height="70" src="https://github.com/Joe-2002.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/Joe-2002">李柯辰</a> 
         <p> 南京航空航天大学<br>江苏霖承科技有限公司</p>
       </td>
-     <td width="190">
+     <td>
          <a href="https://github.com/Ethan-2004"><img width="70" height="70" src="https://github.com/Ethan-2004.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/Ethan-2004">张海生</a>
          <p>南通师范高等专科学校<br>江苏霖承科技有限公司</p>
       </td>
-      <td width="190">
+      <td>
          <a href="https://github.com/zhumengyu"><img width="70" height="70" src="https://github.com/zhumengyu.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zhumengyu">朱梦雨</a> 
         <p>南通理工学院<br>江苏霖承科技有限公司</p>
       </td> 
-       <td width="190">
+       <td>
          <a href="https://github.com/zhaojaiyi"><img width="70" height="70" src="https://github.com/zhaojaiyi.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zhaojaiyi">赵嘉仪</a>
          <p>南通师范高等专科学校<br>江苏霖承科技有限公司</p>
       </td>
-      <td width="190">
+      <td>
          <a href="https://github.com/zhangyi999-g"><img width="70" height="70" src="https://github.com/zhangyi999-g.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zhangyi999-g">张艺琼</a>
          <p>北京大学</p>
