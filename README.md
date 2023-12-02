@@ -212,7 +212,7 @@
 
 ## 致谢
 
-特别感谢以下为教程做出贡献的同学！
+特别感谢以下为项目做出贡献的同学！
 
 <a href="https://github.com/Joe-2002/LinChance_GPT/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Joe-2002/LinChance_GPT" />
