@@ -144,68 +144,79 @@
 <table border="0">
   <tbody>
     <tr align="center">
-      <td>
+     <td width="190">
          <a href="https://github.com/Joe-2002"><img width="70" height="70" src="https://github.com/Joe-2002.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/Joe-2002">李柯辰</a> 
         <p> 南京航空航天大学<br>江苏霖承科技有限公司</p>
       </td>
-      <td>
+     <td width="190">
          <a href="https://github.com/Ethan-2004"><img width="70" height="70" src="https://github.com/Ethan-2004.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/Ethan-2004">张海生</a>
          <p>南通师范高等专科学校<br>江苏霖承科技有限公司</p>
       </td>
-      <td>
+      <td width="190">
          <a href="https://github.com/zhumengyu"><img width="70" height="70" src="https://github.com/zhumengyu.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zhumengyu">朱梦雨</a> 
         <p>南通理工学院<br>江苏霖承科技有限公司</p>
       </td> 
-       <td>
+       <td width="190">
          <a href="https://github.com/zhaojaiyi"><img width="70" height="70" src="https://github.com/zhaojaiyi.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zhaojaiyi">赵嘉仪</a>
          <p>南通师范高等专科学校<br>江苏霖承科技有限公司</p>
+      </td>
+      <td width="190">
+         <a href="https://github.com/zhangyi999-g"><img width="70" height="70" src="https://github.com/zhangyi999-g.png?s=40" alt="pic"></a><br>
+         <a href="https://github.com/zhangyi999-g">张艺琼</a>
+         <p>北京大学</p>
       </td>
     </tr>
   </tbody>
 </table>
 <table border="0">
   <tbody>
-    <tr align="center";align="center";width: "100px"; height:50px;>
-      <td>
-         <a href="https://github.com/zhangyi999-g"><img width="70" height="70" src="https://github.com/zhangyi999-g.png?s=40" alt="pic"></a><br>
-         <a href="https://github.com/zhangyi999-g">张艺琼</a>
-         <p>北京大学</p>
-      </td>
-      <td>
+    <tr align="center" >
+      <td width="190">
          <a href="https://github.com/zzc-ccccc"><img width="70" height="70" src="https://github.com/zzc-ccccc.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zzc-ccccc">曾紫翀</a>
          <p>悉尼科技大学</p>
       </td>
-      <td>
+      <td width="190">
          <a href="https://github.com/zheyuX"><img width="70" height="70" src="https://github.com/zheyuX.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/zheyuX">肖喆煜</a>
-         <p>中国石油大学（北京）</p>
+         <p>中国石油大学</p>
       </td>
-      <td>
+      <td width="190">
          <a href="https://github.com/Ava-vivian"><img width="70" height="70" src="https://github.com/Ava-vivian.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/Ava-vivian">张晋赫</a>
          <p>北京工业大学</p>
       </td>
-      <td>
+      <td width="190">
          <a href="https://github.com/imlhoy"><img width="70" height="70" src="https://github.com/imlhoy.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/imlhoy">林弘毅</a>
          <p>广东财经大学</p>
       </td>
-      <td>
+      <td width="190">
          <a href="https://github.com/Ahanyue"><img width="70" height="70" src="https://github.com/Ahanyue.png?s=40" alt="pic"></a><br>
          <a href="https://github.com/Ahanyue">郑慧颖</a>
          <p>广东财经大学</p>
+      </td>
+       <td width="190">
+         <a href="https://github.com/Ahalfmoon"><img width="70" height="70" src="https://github.com/Ahalfmoon.png?s=40" alt="pic"></a><br>
+         <a href="https://github.com/Ahalfmoon">周旻萱</a>
+         <p>南开大学</p>
       </td>
     </tr>
   </tbody>
 </table>
 </div>
 
-特别感谢为本项目做出贡献的同学们！
+## 致谢
+
+特别感谢以下为教程做出贡献的同学！
+
+<a href="https://github.com/Joe-2002/LinChance_GPT/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Joe-2002/LinChance_GPT" />
+</a>
 
 ## Star History
 
