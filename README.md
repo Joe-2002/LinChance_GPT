@@ -159,11 +159,6 @@
          <a href="https://github.com/zhumengyu">朱梦雨</a> 
         <p>南通理工学院<br>江苏霖承科技有限公司</p>
       </td> 
-       <td>
-         <a href="https://github.com/zhaojaiyi"><img width="70" height="70" src="https://github.com/zhaojaiyi.png?s=40" alt="pic"></a><br>
-         <a href="https://github.com/zhaojaiyi">赵嘉仪</a>
-         <p>南通师范高等专科学校<br>江苏霖承科技有限公司</p>
-      </td>
     </tr>
   </tbody>
 </table>
